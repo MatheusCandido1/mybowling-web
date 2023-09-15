@@ -5,7 +5,6 @@ import { LuUser2 } from "react-icons/lu";
 import { BowlingIcon } from "../BowlingIcon";
 import { GiGymBag } from "react-icons/gi";
 import { BiBowlingBall } from "react-icons/bi";
-import { Link } from "react-router-dom";
 
 export function BottomNavigation() {
   const [active, setActive] = useState(2);
