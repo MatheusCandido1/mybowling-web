@@ -11,5 +11,10 @@ export interface IFrame {
     pins: number | undefined,
     thrown: boolean,
   },
+  thirdBall?: {
+    pins: number | undefined,
+    thrown: boolean,
+  },
+  points: number,
   status: 'WAITING' | 'IN_PROGRESS' | 'COMPLETED',
 }

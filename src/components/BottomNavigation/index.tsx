@@ -31,7 +31,7 @@ export function BottomNavigation() {
         icon={<BiBowlingBall className="h-8 w-8" />}
         active={active === 2}
         onClick={() => handleActive(2)}
-        route={'/'}
+        route={'/game'}
       />
       <IconButton
         icon={<GiGymBag className="h-8 w-8" />}

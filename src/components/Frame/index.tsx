@@ -74,6 +74,7 @@ export function Frame({ data }: FrameProps) {
           pins: 0,
           thrown: false,
         },
+        points: 10,
         status: 'COMPLETED',
       }
 
@@ -96,6 +97,7 @@ export function Frame({ data }: FrameProps) {
           pins: 10 - Number(firstBall),
           thrown: false,
         },
+        points: 10,
         status: 'COMPLETED',
       }
 
@@ -104,7 +106,7 @@ export function Frame({ data }: FrameProps) {
       return;
     }
 
-    if(firstBall) {
+    if(firstBall && !secondBall) {
       frame = {
         frameNumber,
         isStrike: false,
@@ -118,6 +120,7 @@ export function Frame({ data }: FrameProps) {
           pins: 0,
           thrown: false,
         },
+        points: Number(firstBall),
         status: 'IN_PROGRESS',
       }
       setCurrentScore(firstBall)
@@ -125,7 +128,7 @@ export function Frame({ data }: FrameProps) {
       return
     }
 
-    if(firstBall && secondBall) {
+    if(secondBall) {
       const score = Number(firstBall) + Number(secondBall)
 
       frame = {
@@ -141,6 +144,7 @@ export function Frame({ data }: FrameProps) {
           pins: Number(secondBall),
           thrown: true,
         },
+        points: score,
         status: 'COMPLETED',
       }
       setCurrentScore(score ? String(score) : '')
@@ -157,10 +161,10 @@ export function Frame({ data }: FrameProps) {
     <>
       <div
         className={
-          cn("flex flex-col w-full max-w-[150px] h-[112px] items-center justify-between p-2 rounded",
+          cn("flex flex-col w-full max-w-[150px] h-[112px] items-center justify-between p-2 rounded bg-teal-600 text-white",
           status === 'IN_PROGRESS' && ' border-blue-500 border-2 ',
           status === 'WAITING' && ' bg-blue-200 ',
-          status === 'COMPLETED' && ' border-2 border-green-500',
+          status === 'COMPLETED' && ' ',
         )}
       >
         <header className="w-full centralize">
@@ -168,7 +172,7 @@ export function Frame({ data }: FrameProps) {
         </header>
         <div className="flex gap-2 w-full ">
           <input
-            className="w-1/2 text-center border-b border-r uppercase"
+            className="w-1/2 text-center border-b border-r uppercase rounded"
             onChange={handleFirstBall}
             tabIndex={1}
             onKeyDown={handleFirstBallKeyDown}
