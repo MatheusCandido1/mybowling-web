@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Frame } from "../../components/Frame";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -7,9 +8,10 @@ import { GiBowlingPin } from "react-icons/gi";
 import * as Switch from '@radix-ui/react-switch';
 import { GameContext, GameProvider } from "../../contexts/GameContext";
 import { formatScore, formatPoints } from "../../utils/formatScore";
+import { PinBoard } from "../../components/Game/PinBoard";
 
 export function Game() {
-
+  const [showPinBoard, setShowPinBoard] = useState(false);
 
   return(
     <GameProvider>
@@ -28,40 +30,33 @@ export function Game() {
              ))}
            </Swiper>
            </div>
-           <div>
-           <div className="flex items-center justify-end px-5">
+          <div className="flex items-center justify-between mx-5">
+          <div className="flex items-center justify-end">
            <label className="text-[15px] leading-none pr-[15px]" htmlFor="airplane-mode">
              Show Pins
            </label>
            <Switch.Root
              className="w-[42px] h-[25px] bg-blackA9 rounded-full border-teal-600 relative shadow-blackA7 focus:shadow-[0_0_0_2px]  data-[state=checked]:bg-teal-600 outline-none cursor-default"
              id="airplane-mode"
+             onCheckedChange={() => setShowPinBoard(!showPinBoard)}
            >
              <Switch.Thumb className="block w-[21px] h-[21px] bg-white rounded-full shadow-[0_2px_2px] shadow-blackA7 transition-transform duration-100 translate-x-0.5 will-change-transform data-[state=checked]:translate-x-[19px]" />
            </Switch.Root>
          </div>
-           </div>
-           <div className="w-full h-full justify-center items-center mt-4 flex flex-col gap-1">
-             <div className="flex justify-center w-full gap-4">
-               <GiBowlingPin className="text-teal-600 h-16 w-16 hover:text-red-900" />
-               <GiBowlingPin className="text-teal-600 h-16 w-16 -ml-8" />
-               <GiBowlingPin className="text-teal-600 h-16 w-16 -mr-8 -ml-8" />
-               <GiBowlingPin className="text-teal-600 h-16 w-16" />
-             </div>
-             <div className="flex justify-center w-full gap-4">
-               <GiBowlingPin className="text-teal-600 h-16 w-16" />
-               <GiBowlingPin className="text-teal-600 h-16 w-16 -mr-8 -ml-8" />
-               <GiBowlingPin className="text-teal-600 h-16 w-16" />
-             </div>
-             <div className="flex justify-center w-full gap-4">
-               <GiBowlingPin className="text-teal-600 h-16 w-16 -mr-4 -ml-4" />
-               <GiBowlingPin className="text-teal-600 h-16 w-16 -mr-4 -ml-4" />
-             </div>
-             <div className="flex justify-center w-full">
-               <GiBowlingPin className="text-teal-600 h-16 w-16" />
-             </div>
-
-           </div>
+         {showPinBoard && (
+          <div className="flex items-center border rounded-lg p-3">
+            <section className="flex items-center justify-center">
+              <GiBowlingPin className="text-teal-600 h-8 w-8" />
+              <span>Pin Up</span>
+            </section>
+            <section className="flex items-center justify-center">
+              <GiBowlingPin className="text-red-800 h-8 w-8" />
+              <span>Pin Down</span>
+            </section>
+          </div>
+        )}
+          </div>
+           {showPinBoard && <PinBoard />}
            <div className="flex flex-col-reverse gap-4 p-4">
              <footer className="w-full flex">
                {frames && frames.map((frame, index) => (

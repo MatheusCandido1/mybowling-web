@@ -4,7 +4,7 @@ import { AppLayout } from '../layouts/AppLayout';
 
 import { Equipments } from '../pages/Equipments';
 import { Games } from '../pages/Games';
-import { Game } from '../pages/Game';
+import { GameWrapper } from '../wrappers/GameWrapper';
 
 export function Router() {
   return(
@@ -13,7 +13,7 @@ export function Router() {
         <Route element={<AppLayout />} >
           <Route path="/" element={<Games />} />
           <Route path="/equipments" element={<Equipments />} />
-          <Route path="/game" element={<Game />} />
+          <Route path="/game" element={<GameWrapper />} />
         </Route>
       </Routes>
     </BrowserRouter>
