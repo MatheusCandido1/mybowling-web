@@ -14,7 +14,7 @@ export function BottomNavigation() {
   }
 
   return (
-    <div className="h-20 shadow-lg w-full border-2 flex justify-between items-center rounded-t-xl px-5">
+    <div className="shadow-lg w-full border-2 flex justify-between items-center rounded-t-xl px-5">
       <IconButton
         icon={<RiHomeLine className="h-8 w-8" />}
         active={active === 0}
