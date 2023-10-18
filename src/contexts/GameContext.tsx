@@ -1,4 +1,4 @@
-import { createContext, useCallback, useState } from 'react';
+import { createContext, useState } from 'react';
 import { IFrame } from '../entities/Frame';
 
 interface GameContextData {
@@ -36,8 +36,6 @@ const initialFrames: IFrame[ ] = Array.from({ length: 10 }, (_, i) => ({
 export function GameProvider({ children }: { children: React.ReactNode }) {
   const [frames, setFrames] = useState<IFrame[]>(initialFrames);
   const currentFrame = frames.find(f => f.status === 'IN_PROGRESS');
-  const [currentScore, setCurrentScore] = useState<number>(0);
-  const [showPinBoard, setShowPinBoard] = useState(true);
 
   function updateFrame(frame: IFrame) {
     let existingFrame = frames.find(f => f.frameNumber === frame.frameNumber);
@@ -54,11 +52,11 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
       setFrames([...frames]);
       //setCurrentScore(existingFrame, index)
-      recalculateScore();
+      // recalculateScore();
 
     }
   }
-
+  /*
   function recalculateScore() {
     const updatedFrames = frames.map((frame: IFrame, index) => {
       const prevFrame = frames[index - 1];
@@ -75,7 +73,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
     // Update the frames array with the updatedFrames
     setFrames(updatedFrames);
-  }
+  }*/
 
 
 

@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Pin } from "../Pin";
 
+/*
 const frameToString = (frame: number[]) => {
   return frame.length > 0 ? frame.join(" - ") : "";
 };
 
 const defaultFrame = [1,2,3,4,5,6,7,8,9,10]
+*/
 
 export function PinBoard() {
   const [selectedPins, setSelectedPins] = useState<number[]>([]);
@@ -17,9 +19,9 @@ export function PinBoard() {
     [1],
   ];
 
-  const frame = [...selectedPins].sort((a, b) => a - b);
+  // const frame = [...selectedPins].sort((a, b) => a - b);
 
-  //onst remainingFrame = defaultFrame.filter((pin) => !frame.includes(pin));
+  // const remainingFrame = defaultFrame.filter((pin) => !frame.includes(pin));
 
   function handlePinSelection(pin: number) {
     setSelectedPins((prevSelectedPins) =>
